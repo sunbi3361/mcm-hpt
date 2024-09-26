@@ -1,0 +1,22 @@
+**** 4096 3.814697265625e-06 2147483648
+Profiling server running on: 40586
+num walkers: 16
+num TLB sets: 64
+num TLB ways: 8
+memory address offset: 2147487744
+num walkers: 16
+num TLB sets: 64
+num TLB ways: 8
+memory address offset: 2147487744
+num walkers: 16
+num TLB sets: 64
+num TLB ways: 8
+memory address offset: 2147487744
+num walkers: 16
+num TLB sets: 64
+num TLB ways: 8
+memory address offset: 2147487744
+switch latency: 360
+setting switch connector latency: 360
+**** 2147487744 2.0000038146972656 2147483648
+Number node 32768, number connection 536870912

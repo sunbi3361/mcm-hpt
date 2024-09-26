@@ -1,0 +1,8 @@
+srun: error: compasslab5: task 0: Killed
+srun: Force Terminated StepId=164977.0
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compasslab5: task 0: Terminated
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compasslab5: task 0: Terminated
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compasslab5: task 0: Terminated

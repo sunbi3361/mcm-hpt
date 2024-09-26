@@ -1,0 +1,6 @@
+srun: interrupt (one more within 1 sec to abort)
+srun: StepId=165675.0 task 0: running
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compasslab5: task 0: Terminated
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+srun: error: compasslab5: task 0: Terminated
