@@ -16,6 +16,7 @@ type MemoryAllocator interface {
 	GetDeviceIDByPAddr(pAddr uint64) int
 	AllocateVirtualChunk(pid ca.PID, byteSize uint64, deviceID int) uint64
 	allocatePageTablePage(pid ca.PID, deviceID int, vAddr, pAddr uint64) uint64
+	allocateHashedPageTable(pid ca.PID, deviceID, chiplet int) uint64 // sbin
 	AllocateUnified(pid ca.PID, byteSize uint64) uint64
 	AllocateVirtualChunkLASP(pid ca.PID, byteSize uint64, deviceID int, partition string) uint64
 	Free(pid ca.PID, vAddr uint64)
@@ -133,6 +134,17 @@ func (a *memoryAllocatorImpl) allocatePageTablePage(
 	// no locks here to prevent deadlocks
 	device := a.devices[deviceID]
 	return device.allocatePageTablePage(vAddr, pAddr)
+}
+
+// sbin: allocate hashed page table in the specific chiplet
+func (a *memoryAllocatorImpl) allocateHashedPageTable(
+	pid ca.PID,
+	deviceID int,
+	chiplet int,
+) uint64 {
+	// no locks here to prevent deadlocks
+	device := a.devices[deviceID]
+	return device.allocateHashedPageTable(chiplet)
 }
 
 func (a *memoryAllocatorImpl) AllocateUnified(

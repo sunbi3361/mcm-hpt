@@ -1,5 +1,9 @@
 package device
 
+import (
+	"fmt"
+)
+
 // DeviceType marks the type of a device.
 type DeviceType int
 
@@ -68,6 +72,20 @@ func (d *Device) allocatePageTablePage(vAddr uint64, pAddr uint64) uint64 {
 
 	d.mustHaveSpaceLeft()
 	pAddrToReturn := d.MemState.allocatePageTablePage(vAddr, pAddr)
+
+	return pAddrToReturn
+}
+
+// sbin
+func (d *Device) allocateHashedPageTable(chiplet int) uint64 {
+	if d.Type == DeviceTypeUnifiedGPU {
+		panic("oh no!")
+	}
+
+	d.mustHaveSpaceLeft()
+	pAddrToReturn := d.MemState.allocatePageOnChiplet(chiplet)
+
+	fmt.Println("HPT\tchiplet: %d\tpAddr: %d", chiplet, pAddrToReturn)
 
 	return pAddrToReturn
 }
