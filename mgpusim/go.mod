@@ -11,6 +11,7 @@ require (
 	github.com/rs/xid v1.2.1
 	github.com/tebeka/atexit v0.3.0
 	github.com/vbauerster/mpb/v4 v4.12.2
+	github.com/zmb3/gogetdoc v0.0.0-20190228002656-b37376c5da6a // indirect
 	gitlab.com/akita/akita v1.10.1
 	gitlab.com/akita/dnn v0.3.0
 	gitlab.com/akita/mem v1.8.7

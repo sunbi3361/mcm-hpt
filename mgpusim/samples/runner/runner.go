@@ -367,6 +367,7 @@ type Runner struct {
 }
 
 // ParseFlag applies the runner flag to runner object
+//
 //nolint:gocyclo
 func (r *Runner) ParseFlag() *Runner {
 	if *parallelFlag {
@@ -623,330 +624,330 @@ func (r *Runner) Init() *Runner {
 func (r *Runner) buildTimingPlatform() {
 	// var b platform.Platform
 	switch *platformType {
-	case "ideal":
-		b := platform.MakeIdealVMGPUBuilder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// case "ideal":
+	// 	b := platform.MakeIdealVMGPUBuilder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithAlg(*schedulingAlg)
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		r.Engine, r.GPUDriver = b.Build()
-	case "ideal2":
-		b := platform.MakeOldIdealVM2GPUBuilder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithAlg(*schedulingAlg)
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "ideal2":
+	// 	b := platform.MakeOldIdealVM2GPUBuilder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
 
-		b = b.WithAlg(*schedulingAlg)
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		r.Engine, r.GPUDriver = b.Build()
-	case "i2":
-		b := platform.MakeIdealVM2GPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	b = b.WithAlg(*schedulingAlg)
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "i2":
+	// 	b := platform.MakeIdealVM2GPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
 
-		b.WithAlg(*schedulingAlg)
-		b.WithSchedulingPartition(*schedulingPartition)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.WithLog2PageSize(*log2PageSize)
-		r.Engine, r.GPUDriver = b.Build()
-	case "mcmgpu":
-		b := platform.MakeMCMGPUBuilder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.WithLog2PageSize(*log2PageSize)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "mcmgpu":
+	// 	b := platform.MakeMCMGPUBuilder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithAlg(*schedulingAlg)
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h1":
-		b := platform.MakeH1PlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithAlg(*schedulingAlg)
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h1":
+	// 	b := platform.MakeH1PlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h2":
-		b := platform.MakeH2PlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h2":
+	// 	b := platform.MakeH2PlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h3":
-		b := platform.MakeH3PlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h3":
+	// 	b := platform.MakeH3PlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h4":
-		b := platform.MakeH4PlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h4":
+	// 	b := platform.MakeH4PlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h5":
-		b := platform.MakeH5PlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h5":
+	// 	b := platform.MakeH5PlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h6":
-		b := platform.MakeH6GPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h6":
+	// 	b := platform.MakeH6GPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "h7":
-		b := platform.MakeH7GPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "h7":
+	// 	b := platform.MakeH7GPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
 	case "privatetlb":
 		b := platform.MakePrivateTLBPlatformBuilder()
 		if r.Parallel {
@@ -978,8 +979,8 @@ func (r *Runner) buildTimingPlatform() {
 		b.WithLog2PageSize(*log2PageSize)
 		b.WithWalkersPerChiplet(*numWalkers)
 		r.Engine, r.GPUDriver = b.Build()
-	case "privateh2tlb":
-		b := platform.MakePrivateH2TLBPlatformBuilder()
+	case "hpt":
+		b := platform.MakeHPTPlatformBuilder()
 		if r.Parallel {
 			b.WithParallelEngine()
 		}
@@ -1006,316 +1007,347 @@ func (r *Runner) buildTimingPlatform() {
 		b.WithAlg(*schedulingAlg)
 		b.WithSchedulingPartition(*schedulingPartition)
 		b.WithMemAllocatorType(*memAllocatorType)
-		r.Engine, r.GPUDriver = b.Build()
-	case "privatetlb_ideal":
-		b := platform.MakePrivateTLBIdealPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
-
-		if *isaDebug {
-			b.WithISADebugging()
-		}
-
-		if *visTracing {
-			b.WithVisTracing()
-		}
-
-		if *memTracing {
-			b.WithMemTracing()
-		}
-
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
-
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		r.Engine, r.GPUDriver = b.Build()
-	case "xortlb":
-		b := platform.MakeXORTLBGPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
-
-		if *isaDebug {
-			b.WithISADebugging()
-		}
-
-		if *visTracing {
-			b.WithVisTracing()
-		}
-
-		if *memTracing {
-			b.WithMemTracing()
-		}
-
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
-
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithSchedulingPartition(*schedulingPartition)
-		b.WithMemAllocatorType(*memAllocatorType)
+		b.WithLog2PageSize(*log2PageSize)
 		b.WithWalkersPerChiplet(*numWalkers)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b.UseCoalescingRTU(*useCoalescingRTU)
-		b.WithLog2PageSize(*log2PageSize)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		b = b.SwitchL2TLBStriping(*useSwitching)
-		b = b.UsePtCaching(*ptCaching)
 		r.Engine, r.GPUDriver = b.Build()
-	case "xortlb_h1":
-		b := platform.MakeXORTLBH1GPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// case "privateh2tlb":
+	// 	b := platform.MakePrivateH2TLBPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithSchedulingPartition(*schedulingPartition)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b.UseCoalescingRTU(*useCoalescingRTU)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "xortlb_h2":
-		b := platform.MakeXORTLBH2GPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "privatetlb_ideal":
+	// 	b := platform.MakePrivateTLBIdealPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithSchedulingPartition(*schedulingPartition)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b.UseCoalescingRTU(*useCoalescingRTU)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "distributedtlb":
-		b := platform.MakeDistributedTLBGPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "xortlb":
+	// 	b := platform.MakeXORTLBGPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b.UseCoalescingRTU(*useCoalescingRTU)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "distlb":
-		b := platform.MakeDisTLBGPUBuilder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.WithWalkersPerChiplet(*numWalkers)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b.UseCoalescingRTU(*useCoalescingRTU)
+	// 	b.WithLog2PageSize(*log2PageSize)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	b = b.SwitchL2TLBStriping(*useSwitching)
+	// 	b = b.UsePtCaching(*ptCaching)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "xortlb_h1":
+	// 	b := platform.MakeXORTLBH1GPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithAlg(*schedulingAlg)
-		b = b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "headroom1":
-		b := platform.MakeHeadroom1Builder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b.UseCoalescingRTU(*useCoalescingRTU)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "xortlb_h2":
+	// 	b := platform.MakeXORTLBH2GPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "headroom2":
-		b := platform.MakeHeadroom2Builder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b.UseCoalescingRTU(*useCoalescingRTU)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "distributedtlb":
+	// 	b := platform.MakeDistributedTLBGPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "headroom3":
-		b := platform.MakeHeadroom3Builder()
-		if r.Parallel {
-			b = b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b.UseCoalescingRTU(*useCoalescingRTU)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "distlb":
+	// 	b := platform.MakeDisTLBGPUBuilder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b = b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b = b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b = b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b = b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b = b.WithoutProgressBar()
-		}
-		b = b.WithAlg(*schedulingAlg)
-		b = b.WithMemAllocatorType(*memAllocatorType)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		r.Engine, r.GPUDriver = b.Build()
-	case "modtlb":
-		b := platform.MakeMODTLBGPUPlatformBuilder()
-		if r.Parallel {
-			b.WithParallelEngine()
-		}
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithAlg(*schedulingAlg)
+	// 	b = b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "headroom1":
+	// 	b := platform.MakeHeadroom1Builder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
 
-		if *isaDebug {
-			b.WithISADebugging()
-		}
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
 
-		if *visTracing {
-			b.WithVisTracing()
-		}
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
 
-		if *memTracing {
-			b.WithMemTracing()
-		}
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
 
-		if *tlbTracing {
-			b.WithTLBTracing()
-		}
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
 
-		if *disableProgressBar {
-			b.WithoutProgressBar()
-		}
-		b.WithAlg(*schedulingAlg)
-		b.WithSchedulingPartition(*schedulingPartition)
-		b.WithMemAllocatorType(*memAllocatorType)
-		b.UseCoalescingTLBPort(*useCoalescingTLBPort)
-		b.UseCoalescingRTU(*useCoalescingRTU)
-		b.WithLog2PageSize(*log2PageSize)
-		b = b.WithL2TLBStriping(*l2TlbStriping)
-		b = b.SwitchL2TLBStriping(*useSwitching)
-		b = b.UsePtCaching(*ptCaching)
-		r.Engine, r.GPUDriver = b.Build()
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "headroom2":
+	// 	b := platform.MakeHeadroom2Builder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
+
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
+
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
+
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
+
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
+
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "headroom3":
+	// 	b := platform.MakeHeadroom3Builder()
+	// 	if r.Parallel {
+	// 		b = b.WithParallelEngine()
+	// 	}
+
+	// 	if *isaDebug {
+	// 		b = b.WithISADebugging()
+	// 	}
+
+	// 	if *visTracing {
+	// 		b = b.WithVisTracing()
+	// 	}
+
+	// 	if *memTracing {
+	// 		b = b.WithMemTracing()
+	// 	}
+
+	// 	if *tlbTracing {
+	// 		b = b.WithTLBTracing()
+	// 	}
+
+	// 	if *disableProgressBar {
+	// 		b = b.WithoutProgressBar()
+	// 	}
+	// 	b = b.WithAlg(*schedulingAlg)
+	// 	b = b.WithMemAllocatorType(*memAllocatorType)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	r.Engine, r.GPUDriver = b.Build()
+	// case "modtlb":
+	// 	b := platform.MakeMODTLBGPUPlatformBuilder()
+	// 	if r.Parallel {
+	// 		b.WithParallelEngine()
+	// 	}
+
+	// 	if *isaDebug {
+	// 		b.WithISADebugging()
+	// 	}
+
+	// 	if *visTracing {
+	// 		b.WithVisTracing()
+	// 	}
+
+	// 	if *memTracing {
+	// 		b.WithMemTracing()
+	// 	}
+
+	// 	if *tlbTracing {
+	// 		b.WithTLBTracing()
+	// 	}
+
+	// 	if *disableProgressBar {
+	// 		b.WithoutProgressBar()
+	// 	}
+	// 	b.WithAlg(*schedulingAlg)
+	// 	b.WithSchedulingPartition(*schedulingPartition)
+	// 	b.WithMemAllocatorType(*memAllocatorType)
+	// 	b.UseCoalescingTLBPort(*useCoalescingTLBPort)
+	// 	b.UseCoalescingRTU(*useCoalescingRTU)
+	// 	b.WithLog2PageSize(*log2PageSize)
+	// 	b = b.WithL2TLBStriping(*l2TlbStriping)
+	// 	b = b.SwitchL2TLBStriping(*useSwitching)
+	// 	b = b.UsePtCaching(*ptCaching)
+	// 	r.Engine, r.GPUDriver = b.Build()
 	case "customtlb":
 		b := platform.MakeCustomTLBGPUPlatformBuilder()
 		if r.Parallel {
