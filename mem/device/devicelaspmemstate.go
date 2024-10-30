@@ -17,16 +17,30 @@ type deviceLASPMemState struct {
 	availablePAddrs   [][]uint64
 }
 
+// func (dims *deviceLASPMemState) setInitialAddress(addr uint64) {
+// 	dims.initialAddress = addr
+// 	pageSize := uint64(1 << dims.log2PageSize)
+// 	endAddr := dims.initialAddress + dims.storageSize
+// 	for addr < endAddr {
+// 		for i := 0; i < int(dims.numChiplets); i++ {
+// 			for j := 0; j < int(dims.numBankPerChiplet); j++ {
+// 				dims.availablePAddrs[i] = append(dims.availablePAddrs[i], addr)
+// 				addr += pageSize
+// 			}
+// 		}
+// 	}
+// }
+
+// sbin: for contiguous PA region for each chiplet
 func (dims *deviceLASPMemState) setInitialAddress(addr uint64) {
 	dims.initialAddress = addr
 	pageSize := uint64(1 << dims.log2PageSize)
 	endAddr := dims.initialAddress + dims.storageSize
+	pagesPerChiplet := (dims.storageSize >> 2) >> pageSize
 	for addr < endAddr {
-		for i := 0; i < int(dims.numChiplets); i++ {
-			for j := 0; j < int(dims.numBankPerChiplet); j++ {
-				dims.availablePAddrs[i] = append(dims.availablePAddrs[i], addr)
-				addr += pageSize
-			}
+		for i := 0; i < int(pagesPerChiplet); i++ {
+			dims.availablePAddrs[i] = append(dims.availablePAddrs[i], addr)
+			addr += pageSize
 		}
 	}
 }
